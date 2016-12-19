@@ -7,25 +7,21 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
-  # CREATE
+  # CREATE A POST
   get 'posts/new' do
-    # display empty form and take in params
     erb :new
   end
 
-  # CREATE
   post '/posts' do
-    @post = Post.new(params[:name], params[:content])
-
-    # create - display the filled out form, extract from params
-    # load up all of those instances and set them equal to an instance variable: @posts = Model.all
+    @post = Post.create(params[:name], params[:content])
     erb :index
   end
 
-  # READ
+
+  # READ A POST
   get '/posts' do
-    #display all posts
-    # need a view
+    Post.all
+    erb :index
   end
 
   # READ
